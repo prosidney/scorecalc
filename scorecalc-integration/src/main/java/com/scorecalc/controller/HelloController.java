@@ -1,4 +1,4 @@
-package com.scorecalc.controller;
+package main.java.com.scorecalc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

@@ -30,11 +30,4 @@ public class Application extends SpringBootServletInitializer {
 		return application.sources(Application.class);
 	}
 
-    @Bean // Strictly speaking this bean is not necessary as boot creates a default
-    JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory) {
-        SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
-
-        return factory;
-    }
 }
