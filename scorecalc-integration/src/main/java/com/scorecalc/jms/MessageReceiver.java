@@ -1,31 +1,22 @@
 package com.scorecalc.jms;
 
-import javax.jms.JMSException;
-import javax.jms.MapMessage;
-import javax.jms.Message;
-import javax.jms.MessageListener;
+import com.scorecalc.model.Input;
+import com.scorecalc.service.JmsProcessorService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.jms.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Sidney on 15-03-02.
  */
 public class MessageReceiver implements MessageListener {
 
+    @Autowired
+    private JmsProcessorService jmsProcessorService;
+
     public void onMessage(final Message message) {
-        System.out.println(message.getClass());
-        if (message instanceof MapMessage) {
-            final MapMessage mapMessage = (MapMessage) message;
-
-
-            try {
-                Thread.sleep(10000);
-                System.out.println(mapMessage.getObject("id"));
-
-
-            } catch (JMSException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        jmsProcessorService.process(message);
     }
 }

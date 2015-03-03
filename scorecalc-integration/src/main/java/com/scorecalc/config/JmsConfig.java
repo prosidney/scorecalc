@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.listener.SimpleMessageListenerContainer;
 
+import javax.jms.Session;
+
 /**
  * Created by Sidney on 15-03-02.
  */
@@ -70,7 +72,8 @@ public class JmsConfig {
         smlc.setConnectionFactory(connectionFactory());
         smlc.setDestinationName(queueName);
         smlc.setMessageListener(messageReceiver());
-        //smlc.setConcurrency("3-5");
+        smlc.setConcurrency("10-50");
+        smlc.setSessionAcknowledgeMode(Session.AUTO_ACKNOWLEDGE);
 
         return smlc;
     }

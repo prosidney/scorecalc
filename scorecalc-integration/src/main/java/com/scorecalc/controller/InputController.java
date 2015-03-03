@@ -25,8 +25,10 @@ public class InputController {
 
         map.put("Name", "MYNAME");
         map.put("id", request.getId());
+        map.put("texts", request.getTexts());
 
         messageSender.send(map);
+        messageSender.send1(request);
         return "input " + request.getId() + " received with sucess.";
     }
 }
